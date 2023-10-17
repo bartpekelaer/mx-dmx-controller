@@ -14,6 +14,30 @@ class Luxibel(Fixture):
     def __init__(self):
         super().__init__(str(fixture.get('luxibel', 'name')), int(fixture.get('luxibel', 'channels')))
 
+    @staticmethod
+    def dim():
+        return 1, 255
+
+    @staticmethod
+    def red():
+        return 2, 255
+
+    @staticmethod
+    def green():
+        return 3, 255
+
+    @staticmethod
+    def blue():
+        return 4, 255
+
+    @staticmethod
+    def white():
+        return 5, 255
+
+    @staticmethod
+    def strobe():
+        return 6, 0
+
     def __str__(self):
         return 'Channel 1: Dim, Channel 2: Red, Channel 3: Green, Channel 4: Blue, Channel 5: White, Channel 6: Strobe'
 

@@ -1,2 +1,0 @@
-from pyartnet import DmxPacket
-

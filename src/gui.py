@@ -2,12 +2,19 @@ from PySide6 import QtWidgets, QtCore
 
 from src.config import config
 from src.fixtures import Luxibel
+from src.artnet import ArtnetNodeManager
+
+node = ArtnetNodeManager()
+universe = node.universe
+
 
 luxibel = Luxibel()
+# universe.add_channel(width=luxibel.num_channels, start=1, name=luxibel.name)
 
 
-def print_lux():
-    print(luxibel)
+def luxibel_red():
+    lux = universe.get_channel(luxibel.name)
+    lux.set_values([0, 255, 0, 0, 0, 0])
 
 
 class BaseTab(QtWidgets.QTabWidget):
@@ -25,7 +32,7 @@ class Tab1(BaseTab):
 
         self.luxibel_label = QtWidgets.QLabel('Luxibel BPar 180 RGBW')
         self.luxibel_button_red = QtWidgets.QPushButton('Red')
-        self.luxibel_button_red.clicked.connect(print_lux)
+        self.luxibel_button_red.clicked.connect(luxibel_red)
         self.luxibel_button_green = QtWidgets.QPushButton('Green')
         self.luxibel_button_blue = QtWidgets.QPushButton('Blue')
         self.luxibel_button_white = QtWidgets.QPushButton('White')

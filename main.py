@@ -1,4 +1,5 @@
 import sys
+import asyncio
 
 from PySide6 import QtWidgets
 
@@ -6,16 +7,16 @@ from src.gui import MainWindow
 from src.artnet import ArtnetNodeManager
 
 
-async def start_dmx_broadcast():
-    node = ArtnetNodeManager()
-    await node.start_node()
+async def artnet():
+    artnet_manager = ArtnetNodeManager()
+    asyncio.create_task(artnet_manager.start_node())
 
 
 def main() -> None:
     app = QtWidgets.QApplication([])
     widget = MainWindow()
     widget.show()
-    start_dmx_broadcast()
+    artnet()
     sys.exit(app.exec())
 
 
